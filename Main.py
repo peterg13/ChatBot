@@ -2,7 +2,7 @@ oauth = "oauth:8rth19ao4w5h6xdxeydk74r8nms1i0"
 serverName = "irc.chat.twitch.tv"
 port = 6667
 userName = "peterg13"
-chatName = "peterg"
+chatName = "peterg13"
 
 import socket
 import string
@@ -12,11 +12,12 @@ def openSocket():
 	s.connect((serverName, port))
 	s.send("PASS " + oauth + "\r\n")
 	s.send("NICK " + userName + "\r\n")
-	s.send("JOIN #" + chatName + "\r\n")
+	s.send(":{0}!{0}@{0}.tmi.twitch.tv JOIN #{0}\r\n".format(chatName))
 	return s
 
 def sendMessage(s, message):
-	messageTemp = ":" + chatName + "!" + chatName + "@" + chatName + ".tmi.twitch.tv PRIVMSG " + chatName + " :" + message
+	#messageTemp = ":" + chatName + "!" + chatName + "@" + chatName + ".tmi.twitch.tv PRIVMSG " + chatName + " :" + message
+	messageTemp = ":{0}!{0}@{0}.tmi.twitch.tv PRIVMSG #{0} :{1}\r\n".format(chatName, message)
 	s.send(messageTemp + "\r\n")
 	print("Sent: " + messageTemp)
 
@@ -52,6 +53,14 @@ def loadingComplete(line):
 s = openSocket()
 joinRoom(s)
 
+buffer = ""
+
+
 while True:
-	persist = True
+	buffer = buffer + s.recv(1024)
+	temp = string.split(buffer, "\n")
+	buffer = temp.pop()
+	
+	for line in temp:
+			print(line)
 
