@@ -29,7 +29,7 @@ def joinRoom(s):
 			print(line)
 			Loading = loadingComplete(line)
 			
-	print("\n Successfully connected to ")
+	print("\n Successfully connected to {0} \n".format(chatName))
 	
 def loadingComplete(line):
 	if("End of /NAMES list" in line):
@@ -57,5 +57,8 @@ while True:
 	buffer = temp.pop()
 	
 	for line in temp:
-			print(line)
+			splitted_msg = line.split(':')
+			chat_username = splitted_msg[1].split('!')[0]
+			msg = splitted_msg[2]
+			print("{0}: {1}".format(chat_username, msg))
 
