@@ -1,8 +1,8 @@
-oauth = "oauth:8rth19ao4w5h6xdxeydk74r8nms1i0"
+oauth = "oauth:-------"
 serverName = "irc.chat.twitch.tv"
 port = 6667
-userName = "peterg13"
-chatName = "peterg13"
+userName = "-----"
+chatName = "------"
 
 import socket
 import string
