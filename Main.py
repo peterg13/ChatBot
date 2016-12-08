@@ -1,8 +1,4 @@
-oauth = "oauth:8rth19ao4w5h6xdxeydk74r8nms1i0"
-serverName = "irc.chat.twitch.tv"
-port = 6667
-userName = "peterg13"
-chatName = "peterg13"
+from myAuth import oauth, serverName, port, userName, chatName
 
 import socket
 import string
@@ -34,7 +30,7 @@ def joinRoom(s):
 			print(line)
 			Loading = loadingComplete(line)
 			
-	sendMessage(s, "Succesfully joined chat")
+	print("\n Successfully connected to ")
 	
 def loadingComplete(line):
 	if("End of /NAMES list" in line):
