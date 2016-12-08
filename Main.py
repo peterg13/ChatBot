@@ -1,5 +1,4 @@
 from myAuth import oauth, serverName, port, userName, chatName
-
 import socket
 import string
 
